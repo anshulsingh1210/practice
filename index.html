@@ -10,7 +10,7 @@
             HTML Forms
         </h1>
 
-        <form id="htmlForm">
+        <form id="userForm">
             <label>
                 Name
                 <input type="text" id="name">
@@ -53,7 +53,7 @@
             <br />
 
             <label>Address
-                <textarea id="Address" rows="4"></textarea>
+                <textarea id="address" rows="4"></textarea>
             </label>
 
             <br />
@@ -65,15 +65,61 @@
             <label>Email
                 <input type="email" id="email">
             </label>
-
+            <br />
             <button type="reset">Reset</button>
+            <br />
             <button type="submit" onclick="submitForm()">Submit</button>
 
         </form>
 
         <script>
-            function submitForm(){
-                return null
+            function submitForm() {
+                const form = document.getElementById('userForm');
+                form.addEventListener('submit', function(e) {
+                e.preventDefault();           
+                });
+
+                const name = document.getElementById("name").value.trim();
+                const age = document.getElementById("age").value.trim();
+                const country = document.getElementById("country").value;
+                const address = document.getElementById("address").value.trim();
+                const phone = document.getElementById("telephone").value.trim();
+                const email = document.getElementById("email").value.trim();
+
+                const genderEl = document.querySelector('.gender:checked');
+                const techEls = document.querySelectorAll(".tech:checked");
+                
+                // console.log(name,age, country,address,phone,email,genderEl,techEls)
+                if (
+                !name ||
+                !age ||
+                !genderEl ||
+                !country ||
+                !address ||
+                !phone ||
+                !email ||
+                techEls.length === 0
+                ) {
+                alert("All fields are mandatory");
+                return;
+                }
+
+                if (isNaN(age)) {
+                alert("Age must be a number");
+                return;
+                }
+
+                if (!/^\d+$/.test(phone)) {
+                alert("Telephone must contain only numbers");
+                return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Invalid email format");
+                return;
+                }
+
+                
             }
         </script>
     </body>
