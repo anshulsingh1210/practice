@@ -71,9 +71,9 @@
             <button type="submit" onclick="submitForm()">Submit</button>
 
         </form>
-
-        <h1>Table</h1>
+        <h1 id="tableHeader" style="display: none">Table</h1>
         <table id="resultTable" style="display: none">
+
             <thead>
                 <tr>
                     <th>Name</th>
@@ -139,7 +139,23 @@
                 const techStack = Array.from(techEls)
                     .map((el) => el.value)
                     .join(", ");
+                
+                const table = document.getElementById("resultTable");
+                const tbody = table.querySelector("tbody");
+                const row = tbody.insertRow();
 
+                row.insertCell(0).innerText = name;
+                row.insertCell(1).innerText = age;
+                row.insertCell(2).innerText = genderEl.value;
+                row.insertCell(3).innerText = country;
+                row.insertCell(4).innerText = techStack;
+                row.insertCell(5).innerText = address;
+                row.insertCell(6).innerText = phone;
+                row.insertCell(7).innerText = email;
+
+                table.style.display = "table";
+                document.getElementById("tableHeader").style.display="block";
+        
                 
             }
         </script>
